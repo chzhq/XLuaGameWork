@@ -8,7 +8,9 @@
 --local UIMainView = require('DiSanTao/UIMainView')
 
 --local UIMainView = require('DiSiTao/UIMainView') --加载
-local UIMainView = require('DiLiuTao/UIMainPanel')
+--local UIMainView = require('DiLiuTao/UIMainPanel')
+local UIMainView = require('Lesson01/GameGlobelMgr')
+
 function Update()
     --UIRewardView:Update()
 end
