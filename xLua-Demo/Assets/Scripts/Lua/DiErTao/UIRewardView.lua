@@ -10,137 +10,249 @@ local Content = RightBackage:Find('ScrollView/Viewport/Content')
 local Item = RightBackage:Find('Item').gameObject
 local GridReward = LeftReward:Find('GridReward')
 local Reward = LeftReward:Find('Reward')
+local RewardIcon = Reward:Find('Icon'):GetComponent('Image')
 local BtnChouJiang = LeftReward:Find('BtnChouJiang'):GetComponent('Button')
 local BtnLingQu = LeftReward:Find('BtnLingQu'):GetComponent('Button')
-local _time = CS.UnityEngine.Time.time;
-local IsChouKa=false;
-local index = 0;
-local count = 0;
-local configs = {};
-local RewardID;
 
-local backdatas ={}
+-- 抽奖控制
+local SPIN_DURATION = 6
+local START_INTERVAL = 0.05
+local END_INTERVAL = 0.25
 
---初始化
-function UIRewardView : InitAwake()
-    --ConfigData:Init();
-    BtnChouJiang.onClick:AddListener(OnChouJiang)
-    BtnLingQu.onClick:AddListener(OnLingQu)
-    UIRewardView:GridReward();--获取抽奖信息
+local rewardItems = {}
+local configs = {}
+local bagDatas = {}
+local isSpinning = false
+local spinElapsed = 0
+local tickElapsed = 0
+local currentInterval = START_INTERVAL
+local currentIndex = -1
+local targetIndex = -1
+local targetRewardId = nil
+local highlightGo = nil
+local shouldStop = false
+local function SafeLog(tag, ...)
+    print('[UIRewardView][' .. tag .. ']', ...)
 end
 
-function UIRewardView : SetBackdatas(RID)
-   for i=1,#backdatas do
-      local data = backdatas[i]
-      if(data.ID == RID) then
-         return data
-      end
-   end
-   return false
-end 
---领取奖品   当滚动框停止后，可以点击领取物品领取选中框滚到的对应位置上的奖品
-function OnLingQu()   -- 奖品进入背包
+local function ClearHighlight()
+    if highlightGo then
+        highlightGo:SetActive(false)
+        highlightGo = nil
+    end
+end
 
-    local data = UIRewardView:GetConfig(RewardID)
+local function ApplyHighlight(idx)
+    if idx < 0 or idx >= #rewardItems then
+        return
+    end
+    local item = rewardItems[idx + 1]
+    local bg = item:Find('img_bg').gameObject
+    bg:SetActive(true)
+    highlightGo = bg
+end
+
+local function FinishSpin()
+    isSpinning = false
+    shouldStop = false
+    spinElapsed = 0
+    tickElapsed = 0
+    currentInterval = START_INTERVAL
+
+    if BtnChouJiang then
+        BtnChouJiang.interactable = true
+    end
+
+    if targetIndex >= 0 and targetIndex < #configs then
+        local rewardConfig = configs[targetIndex + 1]
+        targetRewardId = rewardConfig.ID
+        SafeLog('FinishSpin', 'targetIndex:', targetIndex, 'rewardId:', targetRewardId)
+        UIRewardView:ShowReward()
+    end
+end
+
+local function AdvanceHighlight()
+    local rewardCount = #rewardItems
+    if rewardCount == 0 then
+        return
+    end
+
+    ClearHighlight()
+    currentIndex = (currentIndex + 1) % rewardCount
+    ApplyHighlight(currentIndex)
+
+    if shouldStop and currentIndex == targetIndex then
+        FinishSpin()
+    end
+end
+
+local function OnChouJiang()
+    if isSpinning or #rewardItems == 0 then
+        return
+    end
+
+    local rewardCount = math.min(8, #rewardItems)
+    targetIndex = CS.UnityEngine.Random.Range(0, rewardCount)
+    targetIndex = math.floor(targetIndex)
+    if targetIndex >= rewardCount then
+        targetIndex = rewardCount - 1
+    end
+    SafeLog('OnChouJiang', 'targetIndex selected:', targetIndex)
+    currentIndex = -1
+    spinElapsed = 0
+    tickElapsed = 0
+    currentInterval = START_INTERVAL
+    shouldStop = false
+    isSpinning = true
+    targetRewardId = nil
+
+    if BtnChouJiang then
+        BtnChouJiang.interactable = false
+    end
+end
+
+local function OnLingQu()
+    if not targetRewardId then
+        SafeLog('OnLingQu', '没有可领取的奖励')
+        return
+    end
+
+    local data = UIRewardView:GetConfig(targetRewardId)
+    if not data then
+        SafeLog('OnLingQu', '未找到配置', targetRewardId)
+        return
+    end
+
     local sprite = UIRewardView:LoadSprite(data.Icon)
-    local backdata = {} --
-    backdata.ID = RewardID --当前的物品ID
-    local ReData = UIRewardView : SetBackdatas(RewardID)
-    if ReData then
-        ReData.Num = ReData.Num +1
-        --要解决的已存在的物品的数量显示 周一继续讲解
-        print("ReData.Num = ",ReData.Num)
-        local obj = ReData.button
+    local existing = UIRewardView:SetBackdatas(targetRewardId)
+
+    if existing then
+        existing.Num = existing.Num + 1
+        local obj = existing.button
         local txtNum = obj.transform:Find('txtNum'):GetComponent('Text')
-        txtNum.text = ReData.Num 
-    else   --点击按钮领取物品正确
-        backdata.Num = 1 --累计计数
-        table.insert(backdatas,backdata)
-        local obj = CS.UnityEngine.GameObject.Instantiate(Item)
-        obj.transform.parent = Content
-        backdata.button = obj  --这个是当前对应的按钮
-        local icon = obj.transform:Find('Icon'):GetComponent('Image')
-        icon.sprite = sprite;
-        local txtNum = obj.transform:Find('txtNum'):GetComponent('Text')
-        txtNum.text = backdata.Num 
-        obj:SetActive(true);
+        txtNum.text = existing.Num
+        SafeLog('OnLingQu', '叠加数量', targetRewardId, existing.Num)
+        return
+    end
+
+    local backdata = {
+        ID = targetRewardId,
+        Num = 1
+    }
+    table.insert(bagDatas, backdata)
+
+    local obj = CS.UnityEngine.GameObject.Instantiate(Item)
+    obj.transform.parent = Content
+    obj.transform.localScale = CS.UnityEngine.Vector3.one
+    obj:SetActive(true)
+    backdata.button = obj
+
+    local icon = obj.transform:Find('Icon'):GetComponent('Image')
+    icon.sprite = sprite
+
+    local txtNum = obj.transform:Find('txtNum'):GetComponent('Text')
+    txtNum.text = backdata.Num
+
+    SafeLog('OnLingQu', '领取成功', targetRewardId)
+
+    -- 清空当前奖励
+    targetRewardId = nil
+    if RewardIcon then
+        RewardIcon.sprite = nil
+        RewardIcon.gameObject:SetActive(false)
     end
 end
 
---编写抽奖过程，点击开始抽奖后选中框开始滚动,随机滚动次数
-function UIRewardView : Update()
-    if IsChouKa then
-        if CS.UnityEngine.Time.time - _time > 0.1 then
-            print("index",index,count)
-            UIRewardView:OnZhuanDongReward()
-            index = index +1;
-            if index > count then
-                IsChouKa = false;
-                local i = (index-1) % 8 -- 0 - 7
-                RewardID = configs[i+1].ID
-                UIRewardView:ShowReward()
-                print("RewardID",RewardID)
-            end
-            _time = CS.UnityEngine.Time.time;
+function UIRewardView:SetBackdatas(rid)
+    for i = 1, #bagDatas do
+        local data = bagDatas[i]
+        if data.ID == rid then
+            return data
         end
     end
+    return nil
 end
---根据ID实现获取单个表
-function UIRewardView:GetConfig(RID)
-    local data = {}
-    for i=1,#configs do
+
+function UIRewardView:Update()
+    if not isSpinning then
+        return
+    end
+
+    local deltaTime = CS.UnityEngine.Time.deltaTime
+    spinElapsed = spinElapsed + deltaTime
+    tickElapsed = tickElapsed + deltaTime
+
+    local progress = math.min(spinElapsed / SPIN_DURATION, 1)
+    local desiredInterval = START_INTERVAL + (END_INTERVAL - START_INTERVAL) * progress
+
+    if tickElapsed >= currentInterval then
+        AdvanceHighlight()
+        tickElapsed = 0
+        currentInterval = desiredInterval
+    end
+
+    if spinElapsed >= SPIN_DURATION then
+        shouldStop = true
+    end
+end
+
+function UIRewardView:GetConfig(rid)
+    for i = 1, #configs do
         local config = configs[i]
-        if config.ID == RID then
-            data = config
+        if config.ID == rid then
+            return config
         end
-    end 
-    return data
+    end
+    return nil
 end
 
 function UIRewardView:ShowReward()
-    local Icon = Reward:Find('Icon'):GetComponent('Image')
-    local data = UIRewardView:GetConfig(RewardID)
+    if not targetRewardId then
+        return
+    end
+    local data = UIRewardView:GetConfig(targetRewardId)
+    if not data then
+        SafeLog('ShowReward', '未找到配置', targetRewardId)
+        return
+    end
     local sprite = UIRewardView:LoadSprite(data.Icon)
-    Icon.sprite = sprite
-    
+    if RewardIcon then
+        RewardIcon.sprite = sprite
+        RewardIcon.gameObject:SetActive(true)
+    else
+        SafeLog('ShowReward', 'RewardIcon 丢失')
+    end
+    SafeLog('ShowReward', '显示奖励', targetRewardId)
 end
 
-local tempbg;
-function UIRewardView:OnZhuanDongReward()
-    if tempbg then
-       tempbg:SetActive(false);
-    end
-    local i = index % 8 -- 0 - 7
-    local tran = GridReward:GetChild(i)
-    local img_bg = tran:Find('img_bg').gameObject
-    img_bg:SetActive(true);
-    tempbg = img_bg
-end
---抽奖  编写抽奖过程，点击开始抽奖后选中框开始滚动,随机滚动次数
-function OnChouJiang()
-   IsChouKa = true
-   index = 0;
-   count = CS.UnityEngine.Random.Range(9, 32)
-end
---抽奖池数据赋值
 function UIRewardView:GridReward()
     configs = ConfigData:GetConfigData()
-    local count = GridReward.childCount;
-    print(type(configs),#configs,count)
-    for i=0,count-1 do  --下标从0开始
-       local child = GridReward:GetChild(i) --符合C#里面unity获取子物体的习惯
-       local config = configs[i+1] --lua里面的下标默认是从1开始
-       print('Icon',config.Icon)
-       local Icon = child:Find('Icon'):GetComponent('Image')
-       local sprite = UIRewardView:LoadSprite(config.Icon)
-       Icon.sprite = sprite
+    rewardItems = {}
+    local childCount = math.min(GridReward.childCount, 8)
+    for i = 0, childCount - 1 do
+        local child = GridReward:GetChild(i)
+        table.insert(rewardItems, child)
+        local config = configs[i + 1]
+        if config then
+            local Icon = child:Find('Icon'):GetComponent('Image')
+            Icon.sprite = UIRewardView:LoadSprite(config.Icon)
+        end
+        local bg = child:Find('img_bg')
+        if bg then
+            bg.gameObject:SetActive(false)
+        end
     end
 end
 
 function UIRewardView:LoadSprite(name)
-    local path = 'Head/'..name
-    local sprite =  CS.UnityEngine.Resources.Load(path,typeof(CS.UnityEngine.Sprite))
-    return  sprite
+    local path = 'Head/' .. name
+    return CS.UnityEngine.Resources.Load(path, typeof(CS.UnityEngine.Sprite))
+end
+
+function UIRewardView:InitAwake()
+    BtnChouJiang.onClick:AddListener(OnChouJiang)
+    BtnLingQu.onClick:AddListener(OnLingQu)
+    UIRewardView:GridReward()
 end
 
 UIRewardView:InitAwake()
