@@ -1,23 +1,23 @@
 Using pre-set license
-Built from '2021.3/china_unity/release' branch; Version is '2021.3.30f1c1 (f004340bb748) revision 15729716'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 11  (10.0.22631) 64bit CoreCountrySpecific' Language: 'zh' Physical Memory: 32508 MB
+Built from '2021.3/china_unity/release' branch; Version is '2021.3.45f1c2 (60b1a63e558a) revision 6336934'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) 64bit CoreCountrySpecific' Language: 'zh' Physical Memory: 16176 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
-D:\Program Files\Unity\Hub\Editor\2021.3.30f1c1\Editor\Unity.exe
+D:\24307\Unity Hub\Editor\2021.3.45f1c2\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-D:/__Work_VR_Unity/__YuanYuZhouWork/xLua-Demo
+D:/XLuaWork/xLua-Demo
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-56956
-Successfully changed project path to: D:/__Work_VR_Unity/__YuanYuZhouWork/xLua-Demo
-D:/__Work_VR_Unity/__YuanYuZhouWork/xLua-Demo
+59711
+Successfully changed project path to: D:/XLuaWork/xLua-Demo
+D:/XLuaWork/xLua-Demo
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -47,125 +47,113 @@ D:/__Work_VR_Unity/__YuanYuZhouWork/xLua-Demo
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [2688] Host "[IP] 192.168.221.1 [Port] 0 [Flags] 2 [Guid] 3870572874 [EditorId] 3870572874 [Version] 1048832 [Id] WindowsEditor(7,chizhongqiang) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [28780] Host "[IP] 26.26.26.1 [Port] 0 [Flags] 2 [Guid] 4090690491 [EditorId] 4090690491 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-SAOATRI5) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [2688] Host "[IP] 192.168.221.1 [Port] 0 [Flags] 2 [Guid] 3870572874 [EditorId] 3870572874 [Version] 1048832 [Id] WindowsEditor(7,chizhongqiang) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [28780] Host "[IP] 26.26.26.1 [Port] 0 [Flags] 2 [Guid] 4090690491 [EditorId] 4090690491 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-SAOATRI5) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 AS: AutoStreaming module initializing.
 [Physics::Module] Initialized MultithreadedJobDispatcher with {0} workers.
-Refreshing native plugins compatible for Editor in 54.32 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 64.52 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2021.3.30f1c1 (f004340bb748)
-[Subsystems] Discovering subsystems at path D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/__Work_VR_Unity/__YuanYuZhouWork/xLua-Demo/Assets
+Initialize engine version: 2021.3.45f1c2 (60b1a63e558a)
+[Subsystems] Discovering subsystems at path D:/24307/Unity Hub/Editor/2021.3.45f1c2/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/XLuaWork/xLua-Demo/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 3070 Ti Laptop GPU (ID=0x24a0)
+    Renderer: NVIDIA GeForce RTX 3060 Laptop GPU (ID=0x2560)
     Vendor:   NVIDIA
-    VRAM:     8043 MB
-    Driver:   31.0.15.1700
+    VRAM:     5996 MB
+    Driver:   32.0.15.6081
 Initialize mono
-Mono path[0] = 'D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/Managed'
-Mono path[1] = 'D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56096
+Mono path[0] = 'D:/24307/Unity Hub/Editor/2021.3.45f1c2/Editor/Data/Managed'
+Mono path[1] = 'D:/24307/Unity Hub/Editor/2021.3.45f1c2/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'D:/24307/Unity Hub/Editor/2021.3.45f1c2/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56696
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
-Register platform support module: D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
-Register platform support module: D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Register platform support module: D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Register platform support module: D:/Program Files/Unity/Hub/Editor/2021.3.30f1c1/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll
-Registered in 0.003278 seconds.
-Native extension for UWP target not found
-Native extension for LinuxStandalone target not found
+Register platform support module: D:/24307/Unity Hub/Editor/2021.3.45f1c2/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.011767 seconds.
 Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 192 ms
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 53.67 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 50.64 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.655 seconds
+- Completed reload, in  0.510 seconds
 Domain Reload Profiling:
-	ReloadAssembly (656ms)
-		BeginReloadAssembly (62ms)
+	ReloadAssembly (511ms)
+		BeginReloadAssembly (103ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (529ms)
-			LoadAssemblies (61ms)
+		EndReloadAssembly (321ms)
+			LoadAssemblies (99ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (68ms)
+			SetupTypeCache (76ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (21ms)
-			SetupLoadedEditorAssemblies (409ms)
+			RebuildScriptCaches (20ms)
+			SetupLoadedEditorAssemblies (186ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (265ms)
+				InitializePlatformSupportModulesInManaged (8ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (54ms)
+				RefreshPlugins (51ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (59ms)
-				ProcessInitializeOnLoadMethodAttributes (30ms)
+				ProcessInitializeOnLoadAttributes (93ms)
+				ProcessInitializeOnLoadMethodAttributes (33ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.004629 seconds.
+Registered in 0.011542 seconds.
 Begin MonoManager ReloadAssembly
-Native extension for UWP target not found
-Native extension for LinuxStandalone target not found
+Symbol file LoadedFromMemory is not a mono symbol file
 Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.58 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 0.78 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Package Manager log level set to [2]
 [Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Completed reload, in  1.209 seconds
+- Completed reload, in  1.963 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1209ms)
-		BeginReloadAssembly (86ms)
+	ReloadAssembly (1964ms)
+		BeginReloadAssembly (137ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (14ms)
-		EndReloadAssembly (1052ms)
-			LoadAssemblies (65ms)
+		EndReloadAssembly (1729ms)
+			LoadAssemblies (175ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (149ms)
+			SetupTypeCache (154ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (35ms)
-			SetupLoadedEditorAssemblies (787ms)
+			RebuildScriptCaches (37ms)
+			SetupLoadedEditorAssemblies (1370ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (20ms)
+				InitializePlatformSupportModulesInManaged (7ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (49ms)
-				ProcessInitializeOnLoadAttributes (697ms)
-				ProcessInitializeOnLoadMethodAttributes (14ms)
-				AfterProcessingInitializeOnLoad (5ms)
+				BeforeProcessingInitializeOnLoad (96ms)
+				ProcessInitializeOnLoadAttributes (1161ms)
+				ProcessInitializeOnLoadMethodAttributes (87ms)
+				AfterProcessingInitializeOnLoad (17ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.56 ms, found 4 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.84 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3045 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 37 unused Assets / (46.7 KB). Loaded Objects now: 3496.
-Memory consumption went from 114.4 MB to 114.4 MB.
-Total: 2.612500 ms (FindLiveObjects: 0.168600 ms CreateObjectMapping: 0.072500 ms MarkObjects: 2.300900 ms  DeleteObjects: 0.069500 ms)
+Unloading 4034 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 74 unused Assets / (47.4 KB). Loaded Objects now: 4455.
+Memory consumption went from 133.8 MB to 133.7 MB.
+Total: 5.352300 ms (FindLiveObjects: 0.210000 ms CreateObjectMapping: 0.084400 ms MarkObjects: 4.988700 ms  DeleteObjects: 0.068400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -182,17 +170,25 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 2596.639732 seconds.
-  path: Assets/GUI_MoblieGame_Fantasty1/Prefabs
-  artifactKey: Guid(728b130f170f4be4aa9e0378c399469c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+  Time since last request: 5234.971780 seconds.
+  path: Assets/Resources/BillingMode.json
+  artifactKey: Guid(9b347e3d3f1cc394d87916d0904293a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Number of updated assets reloaded before import = 0
-Start importing Assets/GUI_MoblieGame_Fantasty1/Prefabs using Guid(728b130f170f4be4aa9e0378c399469c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fa3ee4f79e5569482c43f094250507b') in 0.006589 seconds 
-Number of asset objects unloaded after import = 0
+Start importing Assets/Resources/BillingMode.json using Guid(9b347e3d3f1cc394d87916d0904293a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '338abdd38374c73eb42ff3eecf3f7ebb') in 0.064093 seconds 
+Number of asset objects unloaded after import = 1
 ========================================================================
 Received Import Request.
-  Time since last request: 183.668453 seconds.
-  path: Assets/GUI_MoblieGame_Fantasty1
-  artifactKey: Guid(c4a645385a16ff9458b8899adb360615) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+  Time since last request: 8.188653 seconds.
+  path: Assets/Resources/Reward.csv
+  artifactKey: Guid(92e11aeb925cb4b4797b0149ffdd5cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Number of updated assets reloaded before import = 0
-Start importing Assets/GUI_MoblieGame_Fantasty1 using Guid(c4a645385a16ff9458b8899adb360615) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f942066838a58ea1029545360051be9') in 0.002210 seconds 
-Number of asset objects unloaded after import = 0
+Start importing Assets/Resources/Reward.csv using Guid(92e11aeb925cb4b4797b0149ffdd5cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cb15b1185661082a46bf9f848fab7e7') in 0.010716 seconds 
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 32.692001 seconds.
+  path: Assets/Resources/Reward.csv
+  artifactKey: Guid(92e11aeb925cb4b4797b0149ffdd5cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Number of updated assets reloaded before import = 0
+Start importing Assets/Resources/Reward.csv using Guid(92e11aeb925cb4b4797b0149ffdd5cb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4941182c6fb8f977af304952ccfe6390') in 0.020043 seconds 
+Number of asset objects unloaded after import = 1
