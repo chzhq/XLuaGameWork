@@ -7,7 +7,7 @@ using XLua;
 
 public class HyLuaMananger : MonoBehaviour
 {
-    public LuaEnv luaEnv;
+    public LuaEnv luaEnv;111
     void Start()
     {
         luaEnv = new LuaEnv();

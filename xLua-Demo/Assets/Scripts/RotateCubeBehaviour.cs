@@ -16,7 +16,7 @@ public class RotateCubeBehaviour : MonoBehaviour
     private void Awake()
     {
         _luaEnv = new LuaEnv();
-        _luaEnv.AddLoader(LoadLuaFromScriptsFolder);
+        _luaEnv.AddLoader(LoadLuaFromScriptsFolder);111
         LoadLuaModule();
     }
 
