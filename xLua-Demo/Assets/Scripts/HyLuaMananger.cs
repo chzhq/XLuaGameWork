@@ -7,10 +7,10 @@ using XLua;
 
 public class HyLuaMananger : MonoBehaviour
 {
-    public LuaEnv luaEnv;111
+    public LuaEnv luaEnv;123
     void Start()
     {
-        luaEnv = new LuaEnv();111
+        luaEnv = new LuaEnv();345
         luaEnv.AddLoader(OnLoadLuaFile);
         luaEnv.DoString("require 'main'");
     }
