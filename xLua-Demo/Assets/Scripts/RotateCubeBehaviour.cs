@@ -12,6 +12,8 @@ public class RotateCubeBehaviour : MonoBehaviour
     private LuaTable _module;
     private Action _startHandler;
     private Action _updateHandler;
+    private Action _updateHandler1;
+    private Action _updateHandler2;
 
     private void Awake()
     {
