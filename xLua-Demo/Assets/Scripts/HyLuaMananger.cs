@@ -10,7 +10,7 @@ public class HyLuaMananger : MonoBehaviour
     public LuaEnv luaEnv;123
     void Start()
     {
-        luaEnv = new LuaEnv();345
+        luaEnv = new LuaEnv();345Daa
         luaEnv.AddLoader(OnLoadLuaFile);
         luaEnv.DoString("require 'main'");
     }
